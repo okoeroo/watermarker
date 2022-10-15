@@ -103,30 +103,7 @@ watermark() {
        -gravity ${GRAVITY} -draw "text 0,50 '${WATERMARK_TEXT}'" "${OUTPUT}"
 }
 
-step1() {
-    input="$1"
-    output="$2"
-
-    convert "${input}" \
-       -fill 'rgba(100%,100%,100%,0.2)' -pointsize 400 \
-       -gravity Center -draw "text 0,50 '${TEXT_CENTER}'" "${output}"
-}
-
-step2() {
-    input="$1"
-    output="$2"
-
-    convert "${input}" \
-       -fill 'rgba(100%,100%,100%,0.4)' -pointsize 200 \
-       -gravity SouthWest -draw "text 0,50 '${TEXT_LOW_LEFT}'" "${output}"
-}
-
-
 # Step 1
-#step1 "${original_image}"                       "${watermarked_image_final}.step_1.TMP"
-#step2 "${watermarked_image_final}.step_1.TMP"   "${watermarked_image_final}.step_2.TMP"
-
-
 watermark \
     "${original_image}" \
     "${watermarked_image_final}.step_1.TMP" \
@@ -134,6 +111,7 @@ watermark \
     "${TEXT_LOW_LEFT}" \
     200
 
+# Step 2
 watermark \
     "${watermarked_image_final}.step_1.TMP" \
     "${watermarked_image_final}.step_2.TMP" \
@@ -144,8 +122,7 @@ watermark \
 # Final step
 cp "${watermarked_image_final}.step_2.TMP" "${watermarked_image_final}"
 
-
-# Clean up
+# Clean up intermediate files
 rm "${watermarked_image_final}.step_1.TMP"
 rm "${watermarked_image_final}.step_2.TMP"
 
