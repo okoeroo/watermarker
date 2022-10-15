@@ -129,4 +129,3 @@ rm "${watermarked_image_final}.step_2.TMP"
 
 echo "Output: $watermarked_image_final - Done"
 
-open "${watermarked_image_final}"
