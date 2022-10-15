@@ -80,13 +80,6 @@ else
 fi
 
 
-echo $watermarked_image_dirname
-echo $watermarked_image_basename_name
-echo $watermarked_image_basename_ext
-echo $watermarked_image_basename
-
-echo $watermarked_image_final
-
 
 echo "Input: ${original_image} - processing"
 
@@ -127,5 +120,6 @@ rm "${watermarked_image_final}.step_1.TMP"
 rm "${watermarked_image_final}.step_2.TMP"
 
 
-echo "Output: $watermarked_image_final - Done"
+echo "Output: $watermarked_image_final"
+echo "Done"
 
